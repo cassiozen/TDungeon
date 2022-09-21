@@ -1,27 +1,4 @@
 import type { NewGame, Act } from "./TDungeon";
 
-type GameState = NewGame;
-
-// Win the Game
-// type A1 = Act<
-//   Act<
-//     Act<
-//       Act<
-//         Act<
-//           Act<
-//             Act<
-//               Act<Act<Act<Act<Act<NewGame, "left">, "Open the drawer">, "left">, "Open the drawer">, "forward">,
-//               "right"
-//             >,
-//             "right"
-//           >,
-//           "Use the Small key"
-//         >,
-//         "left"
-//       >,
-//       "left"
-//     >,
-//     "forward"
-//   >,
-//   "Put on the mask"
-// >;
+// TDungeon is an adventure game that runs on Typescript's type system
+// Use Act<Game, Action> to move throught the dangeon and perform actions
