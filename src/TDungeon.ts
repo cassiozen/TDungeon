@@ -148,7 +148,7 @@ type GameMap = [
         "Locked Chest",
         {
           "Use the Small key": ["Small Key", "chest.unlock"];
-          "Force it open": ["Small Key", "chest.force"];
+          "Force it open": [undefined, "chest.force"];
           "Leave it": [undefined, "chest.leave"];
         }
       >
