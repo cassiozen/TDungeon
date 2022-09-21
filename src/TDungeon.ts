@@ -51,7 +51,7 @@ type A = MapLevel<GameMap[0]["level"]>["actions"];
 
 type Actions<TPlayerState extends PlayerState> = {
   "keyRoom.key": [
-    "You find a small key! You put in your pocket and leave the room, leaving the door open as you found.",
+    "You find a small key! You put it in your pocket and exit the room, leaving the door open, as you found it.",
     Obj.Update<
       TPlayerState,
       {
@@ -70,23 +70,23 @@ type Actions<TPlayerState extends PlayerState> = {
     >
   ];
   "spidersRoomSouthDoor.runForDoor": [
-    "You make a run for the other door, only to find it locked. You get back from where you came and, as you leave the room, you are bitten and loose one hit point.",
+    "You make a run for the other door, only to find it locked. You get back and, as you leave the room, you are bitten and lose one hit point.",
     Obj.Update<TPlayerState, { health: Num.Decrement<TPlayerState["health"]>; position: GameMap[1] }>
   ];
   "spidersRoomSouthDoor.exit": [
-    "You just go back from where you came and avoid getting hurt.",
+    "You go back to where you came from and avoid getting hurt.",
     Obj.Update<TPlayerState, { position: GameMap[1] }>
   ];
   "spidersRoomEastDoor.runForDoor": [
-    "You make a run for the other door, and as you cross it you are bitten and loose one hit point.",
+    "You make a run for the other door, and as you cross it you are bitten and lose one hit point.",
     Obj.Update<TPlayerState, { position: GameMap[1]; health: Num.Decrement<TPlayerState["health"]> }>
   ];
   "spidersRoom.putMask": [
-    "As soon as you put on the mask, the spiders gather around you, and as you move, they spread out making way for you. You focus your efforts in investigating the room and find a hidden passage that leads you... to the lost treasure of Anders Hejlsberg! You did it adventurer, now go check the code.",
+    "As soon as you put on the mask, the spiders gather around you. As you move, they spread out, making way for you. You focus your efforts on investigating the room and find a hidden passage that leads you to… the lost treasure of Anders Hejlsberg! You did it, adventurer! Now, go check the code.",
     never
   ];
   "chest.unlock": [
-    "You grab the small key from your pocket and it fits in the chest lock. Click. Inside the chest you find a hairy mask with multiple eyes. You put it in your bag and close the chest.",
+    "You grab the small key from your pocket; it fits in the chest lock. *click* Inside the chest you find a hairy mask with multiple eyes. You put it in your bag and close the chest.",
     Obj.Update<
       TPlayerState,
       {
@@ -96,7 +96,7 @@ type Actions<TPlayerState extends PlayerState> = {
     >
   ];
   "chest.force": [
-    "As you rattle the chest's lock, a spider comes out of nowhere and bites you. ",
+    "As you rattle the chest's lock, a spider comes out of nowhere and bites you.",
     Obj.Update<TPlayerState, { position: GameMap[2]; health: Num.Decrement<TPlayerState["health"]> }>
   ];
   "chest.leave": [
@@ -114,8 +114,8 @@ type GameMap = [
   MapLevel<
     [
       Room<
-        "a half opened door",
-        "Opening the door you find youserlf in a room with a small desk. The desk has one drawer",
+        "a half-opened door",
+        "Opening the door, you find yourself in a room with a small desk. The desk has one drawer.",
         {
           "Open the drawer": [undefined, "keyRoom.key"];
           "Exit the room": [undefined, "keyRoom.exit"];
@@ -129,15 +129,15 @@ type GameMap = [
     [
       Wall,
       Room<
-        "a door - and you can feel air current comming through it",
-        "You open the door to a room full of venomous spiders. There's another door in the right wall",
+        "a door - and you can feel a current of air coming through it",
+        "You open the door to a room full of venomous spiders. There's another door on the right wall.",
         {
           "Reach for the other door": [undefined, "spidersRoomSouthDoor.runForDoor"];
           "Exit from where you came": [undefined, "spidersRoomSouthDoor.exit"];
           "Put on the mask": ["Spider Mask", "spidersRoom.putMask"];
         }
       >,
-      Corridor<"a tunnel that biffurcates", GameMap[2]>
+      Corridor<"a tunnel that bifurcates", GameMap[2]>
     ]
   >,
   MapLevel<
@@ -154,13 +154,13 @@ type GameMap = [
       >
     ]
   >,
-  MapLevel<[Corridor<"that keep following the tunel seems to be your only option", GameMap[4]>, Wall, Wall]>,
+  MapLevel<[Corridor<"that to keep following the tunnel seems to be your only option", GameMap[4]>, Wall, Wall]>,
   MapLevel<
     [
       Wall,
       Room<
-        "a door - and you can feel air current comming from below it",
-        "You open the door to a completely dark room. As the door slams shut behind you notice another door on the left wall and... lot's of venomous spiders",
+        "a door - and you can feel a current of air current coming from below it",
+        "You open the door to a completely dark room. As the door slams shut behind you, you notice another door on the left wall and… lots of venomous spiders",
         {
           "Exit through the other door": [undefined, "spidersRoomEastDoor.runForDoor"];
           "Put on the mask": ["Spider Mask", "spidersRoom.putMask"];
@@ -225,7 +225,7 @@ type Move<
 type CheckActionResult<TGameState extends GameState> = TGameState[1] extends never
   ? TGameState
   : TGameState[1]["health"] extends 0
-  ? [`${TGameState[0]} You are Dead - Game Over!`, null]
+  ? [`${TGameState[0]} You are dead - Game Over!`, null]
   : TGameState[1]["position"] extends MapLevel
   ? [`${TGameState[0]} ${DescribeMapLevel<TGameState[1]["position"]>}`, TGameState[1]]
   : TGameState;
@@ -253,7 +253,7 @@ type NewState = {
 };
 
 export type NewGame = [
-  `Welcome Adventurer. You locked yourself in this dungeon and you can't go back. ${DescribeMapLevel<
+  `Welcome Adventurer. You locked yourself in this dungeon and you can't get out. ${DescribeMapLevel<
     NewState["position"]
   >} Use the type Act<TGameState, TAction>.`,
   NewState
