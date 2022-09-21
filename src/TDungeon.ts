@@ -160,7 +160,7 @@ type GameMap = [
       Wall,
       Room<
         "a door - and you can feel air current comming from below it",
-        "You open the door to a completely dark room. As the door slams shut behind you notice another door on the left wall and... lot's of venomous spiders.",
+        "You open the door to a completely dark room. As the door slams shut behind you notice another door on the left wall and... lot's of venomous spiders",
         {
           "Exit through the other door": [undefined, "spidersRoomEastDoor.runForDoor"];
           "Put on the mask": ["Spider Mask", "spidersRoom.putMask"];
@@ -253,7 +253,7 @@ type NewState = {
 };
 
 export type NewGame = [
-  `Welcome Adventurer. You locked ourself in this dungeon and you can't go back. ${DescribeMapLevel<
+  `Welcome Adventurer. You locked yourself in this dungeon and you can't go back. ${DescribeMapLevel<
     NewState["position"]
   >} Use the type Act<TGameState, TAction>.`,
   NewState
