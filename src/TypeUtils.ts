@@ -1,3 +1,5 @@
+// Credits: Adapted from @devanshj's work on TXState (https://github.com/devanshj/txstate)
+
 /**
  * Casts a type (unless it's already narrower)
  * @example
