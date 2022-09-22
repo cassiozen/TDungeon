@@ -50,16 +50,26 @@ type MapLevel<TLevel extends _MapLevel = _MapLevel> = {
 type A = MapLevel<GameMap[0]["level"]>["actions"];
 
 type Actions<TPlayerState extends PlayerState> = {
-  "keyRoom.key": [
-    "You find a small key! You put it in your pocket and exit the room, leaving the door open, as you found it.",
-    Obj.Update<
-      TPlayerState,
-      {
-        position: GameMap[0];
-        inventory: ["Small Key", ...TPlayerState["inventory"]];
-      }
-    >
-  ];
+  "keyRoom.key": "Small Key" extends TPlayerState["inventory"][number]
+    ? [
+        "You see nothing inside the drawer. You get back and exit the room, leaving the door open, as you found it.",
+        Obj.Update<
+          TPlayerState,
+          {
+            position: GameMap[0];
+          }
+        >
+      ]
+    : [
+        "You find a small key! You put it in your pocket and exit the room, leaving the door open, as you found it.",
+        Obj.Update<
+          TPlayerState,
+          {
+            position: GameMap[0];
+            inventory: ["Small Key", ...TPlayerState["inventory"]];
+          }
+        >
+      ];
   "keyRoom.exit": [
     `You leave the room.`,
     Obj.Update<
@@ -85,16 +95,26 @@ type Actions<TPlayerState extends PlayerState> = {
     "As soon as you put on the mask, the spiders gather around you. As you move, they spread out, making way for you. You focus your efforts on investigating the room and find a hidden passage that leads you to… the lost treasure of Anders Hejlsberg! You did it, adventurer! Now, go check the code.",
     never
   ];
-  "chest.unlock": [
-    "You grab the small key from your pocket; it fits in the chest lock. *click* Inside the chest you find a hairy mask with multiple eyes. You put it in your bag and close the chest.",
-    Obj.Update<
-      TPlayerState,
-      {
-        position: GameMap[2];
-        inventory: ["Spider Mask", ...TPlayerState["inventory"]];
-      }
-    >
-  ];
+  "chest.unlock": "Spider Mask" extends TPlayerState["inventory"][number]
+    ? [
+        "You grab the small key from your pocket; it fits in the chest lock. *click* Inside the chest you see nothing. You close the chest.",
+        Obj.Update<
+          TPlayerState,
+          {
+            position: GameMap[2];
+          }
+        >
+      ]
+    : [
+        "You grab the small key from your pocket; it fits in the chest lock. *click* Inside the chest you find a hairy mask with multiple eyes. You put it in your bag and close the chest.",
+        Obj.Update<
+          TPlayerState,
+          {
+            position: GameMap[2];
+            inventory: ["Spider Mask", ...TPlayerState["inventory"]];
+          }
+        >
+      ];
   "chest.force": [
     "As you rattle the chest's lock, a spider comes out of nowhere and bites you.",
     Obj.Update<TPlayerState, { position: GameMap[2]; health: Num.Decrement<TPlayerState["health"]> }>
