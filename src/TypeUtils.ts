@@ -14,11 +14,11 @@ export type Cast<TType, TBroadType> = TType extends TBroadType ? TType : TBroadT
 /**
  * Gets a subtype of a collection type (object, array, tuple)
  * @example
- * Get<{name: string, pronoums: ['they','them']}, 'pronoums'> //['they','them']
+ * Get<{name: string, pronouns: ['they','them']}, 'pronouns'> //['they','them']
  *
  * You can also get within a nested collection by passing a tuple
  * @example
- * Get<{user: { name: string, pronoums: ['they','them']}}, ['user', 'pronoums', 0]> //'they'
+ * Get<{user: { name: string, pronouns: ['they','them']}}, ['user', 'pronouns', 0]> //'they'
  */
 export type Get<TCollection, TKeys, TFallback = undefined> = TKeys extends any[]
   ? TKeys extends []
@@ -107,7 +107,7 @@ export namespace Obj {
   */
   export type Mergify<TObj> = {
     [Key in keyof TObj]: TObj[Key];
-  } & unknown; // Addind `& unknown` forces TS to "resolve" the type
+  } & unknown; // Adding `& unknown` forces TS to "resolve" the type
 
   /**
   * Updates the type of a given key within an object type
@@ -358,7 +358,7 @@ export namespace Str {
     : [TString];
 
   /**
-  * Given a string literal type TString, returns a new string literal replacing all occurencies of TWhat for TWith
+  * Given a string literal type TString, returns a new string literal replacing all occurrences of TWhat for TWith
   * @example
   * Replace<"Hello World", "World", "Universe"> // "Hello Universe"
   */

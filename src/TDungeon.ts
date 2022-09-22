@@ -204,7 +204,7 @@ type DescribeMapLevel<TMapLevel extends MapLevel> = TMapLevel["level"] extends i
     >
   : never;
 
-// Lists only the Actions currenlty available to the player
+// Lists only the Actions currently available to the player
 type ListActions<TGameState extends GameState, TActions = TGameState[1]["position"]["actions"]> = Obj.KeyWithValue<
   TActions,
   [undefined | TGameState[1]["inventory"][number], any]
