@@ -86,7 +86,7 @@ export namespace Obj {
   // Ex: Mergify<T> //{name: string, age: number}
   export type Mergify<TObj> = {
     [Key in keyof TObj]: TObj[Key];
-  };
+  } & unknown; // Addind `& unknown` forces TS to "resolve" the type
 
   // Updates the type of a given key within an object type
   // Ex: type T = {name: string, age: string} //{name: string, age: string}
