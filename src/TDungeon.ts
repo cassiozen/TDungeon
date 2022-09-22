@@ -47,8 +47,6 @@ type MapLevel<TLevel extends _MapLevel = _MapLevel> = {
   actions: { left: [undefined, 0]; forward: [undefined, 1]; right: [undefined, 2] };
 };
 
-type A = MapLevel<GameMap[0]["level"]>["actions"];
-
 type Actions<TPlayerState extends PlayerState> = {
   "keyRoom.key": [
     "You find a small key! You put it in your pocket and exit the room, leaving the door open, as you found it.",
