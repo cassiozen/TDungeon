@@ -4,6 +4,10 @@
     "module": "ESNext",
     "moduleResolution": "nodenext",
     "strict": true,
-    "exactOptionalPropertyTypes": true
-  }
+    "exactOptionalPropertyTypes": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "dist"
+  },
+  "include": ["src/**/TDungeon.ts"]
 }
