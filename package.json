@@ -8,7 +8,7 @@
   },
   "keywords": [],
   "author": "Cassio Zen",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "typescript": "^4.8.3"
   }
